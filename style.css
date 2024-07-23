@@ -1,0 +1,111 @@
+/* Importing custom fonts for the banner content */
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
+/* Styling for the banner section */
+.banner {
+    width: 100%; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    text-align: center; /* Center-align content */
+    overflow: hidden; /* Hide overflow content */
+    position: relative; /* Positioning context for absolute children */
+}
+
+/* Styling for the slider container */
+.banner .slider {
+    position: absolute; /* Positioned relative to parent */
+    width: 200px; /* Fixed width of the slider */
+    height: 250px; /* Fixed height of the slider */
+    top: 10%; /* Positioned 10% down from the top */
+    left: calc(50% - 100px); /* Center horizontally */
+    transform-style: preserve-3d; /* Preserve 3D transformations */
+    transform: perspective(1000px); /* Set perspective for 3D effect */
+    animation: autoRun 20s linear infinite; /* Animation for auto rotation */
+    z-index: 2; /* Layering above other content */
+}
+
+/* Keyframes for the slider auto rotation */
+@keyframes autoRun {
+    from {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg); /* Initial rotation */
+    }
+    to {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg); /* Full rotation */
+    }
+}
+
+/* Styling for individual slider items */
+.banner .slider .item {
+    position: absolute; /* Positioned relative to parent */
+    inset: 0 0 0 0; /* Full coverage within parent */
+    transform: 
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg)) /* 3D rotation based on position and quantity */
+        translateZ(550px); /* Z-axis translation for 3D depth */
+}
+
+/* Styling for images within slider items */
+.banner .slider .item img {
+    width: 100%; /* Full width of the image */
+    height: 100%; /* Full height of the image */
+    object-fit: cover; /* Cover mode to maintain aspect ratio */
+}
+
+/* Styling for the content section */
+.banner .content {
+    position: absolute; /* Positioned relative to parent */
+    bottom: 0; /* Positioned at the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for horizontal centering */
+    width: min(1400px, 100vw); /* Maximum width constrained to viewport */
+    height: max-content; /* Adjust height based on content */
+    padding-bottom: 100px; /* Bottom padding */
+    display: flex; /* Flex container */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Align items vertically */
+    z-index: 1; /* Layered below slider */
+}
+
+/* Styling for the main headline */
+.banner .content h1 {
+    font-family: 'ICA Rubrik'; /* Custom font */
+    font-size: 16rem; /* Very large font size */
+    line-height: 1em; /* Normal line height */
+    color: #25283B; /* Dark text color */
+    position: relative; /* Positioned relative */
+}
+
+/* Styling for the pseudo element of h1 */
+.banner .content h1::after {
+    position: absolute; /* Positioned absolutely */
+    inset: 0 0 0 0; /* Full coverage within parent */
+    content: attr(data-content); /* Content from data attribute */
+    z-index: 2; /* Layered above other content */
+    -webkit-text-stroke: 2px #d2d2d2; /* Text stroke for contrast */
+    color: transparent; /* Transparent text color */
+}
+
+/* Styling for the author information */
+.banner .content .author {
+    font-family: Poppins; /* Custom font */
+    text-align: right; /* Right-aligned text */
+    max-width: 200px; /* Maximum width */
+}
+
+/* Styling for the secondary headline */
+.banner .content h2 {
+    font-size: 3em; /* Large font size */
+}
+
+/* Styling for the model image */
+.banner .content .model {
+    background-image: url(assets/model.png); /* Background image */
+    width: 100%; /* Full width */
+    height: 75vh; /* Fixed height */
+    position: absolute; /* Positioned absolutely */
+    left: 0; /* Positioned from the left */
+    bottom: 0; /* Positioned at the bottom */
+    background-size: auto 130%; /* Adjusted background size */
+    background-repeat: no-repeat; /* No repeat */
+    background-position: top center; /* Centered horizontally, top aligned */
+    z-index: 1; /* Layered below content */
+}
